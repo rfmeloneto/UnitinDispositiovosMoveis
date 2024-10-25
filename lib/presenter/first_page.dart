@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/presenter/second_page.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
@@ -18,17 +17,22 @@ class FirstPage extends StatelessWidget {
             ElevatedButton(
                 child: const Text('Ir para a Pagina 2'),
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const SecondPage(),
-                    ),
+                    '/second',
                   );
-                })
+                }),
+            ElevatedButton(
+                child: const Text('Ir para a Pagina 3'),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/third',
+                  );
+                }),
           ],
         ),
       ),
     );
   }
 }
-

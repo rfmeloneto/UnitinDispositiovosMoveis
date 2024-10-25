@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/presenter/third_page.dart';
 
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
@@ -16,17 +15,21 @@ class SecondPage extends StatelessWidget {
           children: [
             const Text('Você está na Pagina 2'),
             ElevatedButton(
-              child: const Text('Ir para a Pagina 1'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+                child: const Text('Ir para a Pagina 1'),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/',
+                  );
+                }),
             ElevatedButton(
-              child: const Text('Ir para a Pagina 3'),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ThirdPage()));
-              },
-            )
+                child: const Text('Ir para a Pagina 3'),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/third',
+                  );
+                }),
           ],
         ),
       ),

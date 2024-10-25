@@ -15,11 +15,18 @@ class ThirdPage extends StatelessWidget {
           children: [
             const Text('Você está na Pagina 3'),
             ElevatedButton(
-              child: const Text('Ir para a Pagina 2'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+                child: const Text('Ir para a Pagina 1'),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/',
+                  );
+                }),
+            ElevatedButton(
+                child: const Text('Ir para a Pagina 2'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/second');
+                }),
           ],
         )));
   }
