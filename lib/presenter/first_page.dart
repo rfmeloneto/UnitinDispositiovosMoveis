@@ -20,6 +20,10 @@ class FirstPage extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     '/second',
+                    arguments: {
+                      'title': 'Olá, você está na Página 2',
+                      'text' : 'Esse texto vem da primeira página'
+                      }
                   );
                 }),
             ElevatedButton(
