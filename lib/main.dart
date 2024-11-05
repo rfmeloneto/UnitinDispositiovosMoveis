@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/presenter/set_state_page.dart';
+import 'package:primeiro_app/presenter/value_notifier_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,8 +13,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: PaginaLoja(),
+    return MaterialApp(
+      home: PaginaLojaValueNotifier(),
     );
   }
 }
