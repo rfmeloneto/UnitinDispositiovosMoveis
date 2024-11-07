@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/presenter/change_notifier_page.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -14,7 +14,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PaginaLojaChangeNotifier(),
+      home: Placeholder(),
     );
   }
 }
