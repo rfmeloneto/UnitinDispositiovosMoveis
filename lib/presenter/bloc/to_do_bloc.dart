@@ -17,6 +17,9 @@ class ToDOBloc extends Bloc<ToDoEvent, ToDoState> {
       useCase.removeActivity(event.index);
       emit(LoadedToDoState(_getList(useCase)));
     });
+    on<GetActivitiesEvent>((event, emit) {
+      emit(LoadedToDoState(_getList(useCase)));
+    });
   }
 }
 

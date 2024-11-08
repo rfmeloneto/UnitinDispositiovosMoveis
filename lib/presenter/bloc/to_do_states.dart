@@ -4,7 +4,7 @@ abstract class ToDoState {}
 
 class InitialToDoState extends ToDoState {
   final List<ActivityEntity> activities;
-  final String message = "Sem Atividades Cadastradas";
+
   InitialToDoState(this.activities);
 }
 
@@ -12,6 +12,7 @@ class LoadingToDoState extends ToDoState {}
 
 class LoadedToDoState extends ToDoState {
   final List<ActivityEntity> activities;
+  final String message = "Sem Atividades Cadastradas";
   LoadedToDoState(this.activities);
 }
 
