@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:primeiro_app/presenter/bloc/to_do_bloc.dart';
+import 'package:primeiro_app/presenter/to_do_page.dart';
+import 'package:primeiro_app/usecase/activity_usecase.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,8 +16,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Placeholder(),
+    return BlocProvider(
+      create: (context) => ToDOBloc(ActivityUseCase),
+      child: MaterialApp(
+        home: ToDoPage(),
+      ),
     );
   }
 }
