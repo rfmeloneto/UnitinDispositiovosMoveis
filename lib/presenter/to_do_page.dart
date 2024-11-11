@@ -8,7 +8,7 @@ import 'package:primeiro_app/domain/activity_entity.dart';
 import 'package:primeiro_app/presenter/bloc/to_do_bloc_store.dart';
 import 'package:primeiro_app/presenter/bloc/to_do_evets.dart';
 import 'package:primeiro_app/presenter/bloc/to_do_states.dart';
-import 'package:primeiro_app/usecase/activite_usecase_imp.dart';
+import 'package:primeiro_app/infra/activite_usecase_imp.dart';
 
 class ToDoPage extends StatefulWidget {
   final ActivityStore store = ActivityStore(ActivityUseCaseImp());

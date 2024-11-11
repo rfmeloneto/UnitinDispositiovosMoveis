@@ -1,6 +1,6 @@
 import 'package:primeiro_app/data/activity_list.dart';
 import 'package:primeiro_app/domain/activity_entity.dart';
-import 'package:primeiro_app/usecase/activity_usecase.dart';
+import 'package:primeiro_app/domain/activity_usecase.dart';
 
 class ActivityUseCaseImp extends ActivityUseCase {
   ActivityDb activityList = ActivityDb();
