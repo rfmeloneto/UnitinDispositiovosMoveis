@@ -13,3 +13,8 @@ class RemoveActivityEvent extends ToDoEvent {
 }
 
 class GetActivitiesEvent extends ToDoEvent {}
+
+class IsDoneActivityEvent extends ToDoEvent {
+  final int index;
+  IsDoneActivityEvent({required this.index});
+}

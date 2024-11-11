@@ -20,6 +20,11 @@ class ToDOBloc extends Bloc<ToDoEvent, ToDoState> {
     on<GetActivitiesEvent>((event, emit) {
       emit(LoadedToDoState(_getList(useCase)));
     });
+    on<IsDoneActivityEvent>((event, emit) {
+      emit(LoadingToDoState());
+      useCase.isDone(event.index);
+      emit(LoadedToDoState(_getList(useCase)));
+    });
   }
 }
 

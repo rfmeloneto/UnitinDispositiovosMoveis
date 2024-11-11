@@ -19,4 +19,9 @@ class ActivityUseCaseImp extends ActivityUseCase {
   List<ActivityEntity>? getActivities() {
     return activityList.activityList;
   }
+
+  @override
+  bool isDone(int index) {
+    return activityList.isDone(index);
+  }
 }

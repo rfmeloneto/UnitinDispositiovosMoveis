@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,47 +35,69 @@ class _ToDoPageState extends State<ToDoPage> {
         title: const Text('Lista de Tarefas'),
       ),
       body: Center(
-        child: SizedBox(
-          height: 400,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: BlocBuilder(
-                  bloc: widget.store,
-                  builder: (context, state) {
-                    if (state is LoadingToDoState) {
-                      return const CircularProgressIndicator();
-                    }
-                    if (state is ErrorToDoState) {
-                      return Text(state.message);
-                    }
-                    if (state is LoadedToDoState) {
-                      if (state.activities.isEmpty) {
-                        return Text(state.message);
-                      }
-                      return ListView.builder(
-                        itemCount: state.activities.length,
-                        itemBuilder: (context, index) {
-                          return Text(state.activities[index].title);
-                        },
-                      );
-                    } else {
-                      return const Text('Erro');
-                    }
-                  },
-                ),
-              ),
-              ElevatedButton(
-                child: const Text('Adicionar Tarefa'),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text('Adicionar uma atividade'),
-                        content: Form(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocBuilder(
+              bloc: widget.store,
+              builder: (context, state) {
+                if (state is LoadingToDoState) {
+                  return const CircularProgressIndicator();
+                }
+                if (state is ErrorToDoState) {
+                  return Text(state.message);
+                }
+                if (state is LoadedToDoState) {
+                  if (state.activities.isEmpty) {
+                    return Text(state.message);
+                  }
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: state.activities.length,
+                      itemBuilder: (context, index) {
+                        // return Text(state.activities[index].title);
+                        return Dismissible(
+                          background: Container(color: Colors.red),
+                          key: ValueKey(state.activities[index]),
+                          onDismissed: (direction) {
+                            widget.store.add(RemoveActivityEvent(index: index));
+                          },
+                          child: Card(
+                            margin: const EdgeInsets.all(10),
+                            elevation: 3,
+                            child: ListTile(
+                              title: Text(state.activities[index].title),
+                              subtitle:
+                                  Text(state.activities[index].description),
+                              leading: Checkbox(
+                                value: state.activities[index].isDone,
+                                onChanged: (value) {
+                                  widget.store
+                                      .add(IsDoneActivityEvent(index: index));
+                                },
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                } else {
+                  return const Text('Erro');
+                }
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Adicionar Tarefa'),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('Adicionar uma atividade'),
+                      content: SizedBox(
+                        height: 150,
+                        child: Form(
                           key: formKey,
                           child: Column(
                             children: [
@@ -89,36 +114,35 @@ class _ToDoPageState extends State<ToDoPage> {
                             ],
                           ),
                         ),
-                        actions: [
-                          TextButton(
-                            child: const Text('Salvar'),
-                            onPressed: () {
-                              widget.store.add(AddActivityEvent(
-                                  activity: ActivityEntity(
-                                      title: titleController.text,
-                                      description:
-                                          descriptionController.text)));
-                              titleController.clear();
-                              descriptionController.clear();
-                              widget.store.add(GetActivitiesEvent());
-                              Navigator.pop(context);
-                            },
-                          ),
-                          TextButton(
-                            child: const Text('Fechar'),
-                            onPressed: () {
-                              widget.store.add(GetActivitiesEvent());
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
+                      ),
+                      actions: [
+                        TextButton(
+                          child: const Text('Salvar'),
+                          onPressed: () {
+                            widget.store.add(AddActivityEvent(
+                                activity: ActivityEntity(
+                                    title: titleController.text,
+                                    description: descriptionController.text)));
+                            titleController.clear();
+                            descriptionController.clear();
+                            widget.store.add(GetActivitiesEvent());
+                            Navigator.pop(context);
+                          },
+                        ),
+                        TextButton(
+                          child: const Text('Fechar'),
+                          onPressed: () {
+                            widget.store.add(GetActivitiesEvent());
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

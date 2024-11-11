@@ -10,4 +10,9 @@ class ActivityDb {
   void removeActivityList(int index) {
     activityList.removeAt(index);
   }
+
+  bool isDone(int index) {
+    activityList[index].isDone = !activityList[index].isDone;
+    return activityList[index].isDone;
+  }
 }
