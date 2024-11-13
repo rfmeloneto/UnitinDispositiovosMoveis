@@ -1,18 +1,10 @@
 import 'package:primeiro_app/domain/activity_entity.dart';
 
-class ActivityDb {
+abstract class DataBase {
   List<ActivityEntity> activityList = [];
-
-  void addActivityList(ActivityEntity value) {
-    activityList.add(value);
-  }
-
-  void removeActivityList(int index) {
-    activityList.removeAt(index);
-  }
-
+  void addActivityList(ActivityEntity value) {}
+  void removeActivityList(int index) {}
   bool isDone(int index) {
-    activityList[index].isDone = !activityList[index].isDone;
-    return activityList[index].isDone;
+    throw UnimplementedError("isDone não está implementado");
   }
 }
