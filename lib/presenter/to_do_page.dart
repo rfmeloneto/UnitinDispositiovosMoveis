@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primeiro_app/domain/activity_entity.dart';
 import 'package:primeiro_app/presenter/bloc/to_do_bloc_store.dart';
-import 'package:primeiro_app/presenter/bloc/to_do_evets.dart';
+import 'package:primeiro_app/presenter/bloc/to_do_events.dart';
 import 'package:primeiro_app/presenter/bloc/to_do_states.dart';
 import 'package:primeiro_app/infra/activite_usecase_imp.dart';
 

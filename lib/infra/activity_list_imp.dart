@@ -1,9 +1,11 @@
 import 'package:primeiro_app/data/activity_list.dart';
+import 'package:primeiro_app/data/db.dart';
 import 'package:primeiro_app/domain/activity_entity.dart';
 
 class ActivityDb implements DataBase {
+  DB db = DB.instance;
   @override
-  List<ActivityEntity> activityList = [];
+  late List<ActivityEntity> activityList = db.activityList;
 
   @override
   void addActivityList(ActivityEntity value) {
