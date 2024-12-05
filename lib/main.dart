@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:primeiro_app/animation_page.dart';
 import 'package:primeiro_app/animations/animated_container.dart';
 import 'package:primeiro_app/animations/anumated_opacity.dart';
+import 'package:primeiro_app/animations/rotation_animation.dart';
 
 void main() => runApp(const MyApp());
 
@@ -16,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        home: AnimationPage(AnimatedOpacityExample()),
+        home: AnimationPage(RotationAnimationExample()),
       );
   }
   
