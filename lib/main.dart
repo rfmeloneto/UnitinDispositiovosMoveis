@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/animation_page.dart';
-import 'package:primeiro_app/animations/animated_container.dart';
-import 'package:primeiro_app/animations/animated_curves.dart';
-import 'package:primeiro_app/animations/anumated_opacity.dart';
-import 'package:primeiro_app/animations/rotation_animation.dart';
+import 'package:primeiro_app/exemplo_aspect_ratio.dart';
+import 'package:primeiro_app/exemplo_expanded.dart';
+import 'package:primeiro_app/exemplo_flexible.dart';
+import 'package:primeiro_app/exemplo_single_child_scroll_view.dart';
+import 'package:primeiro_app/exemplo_wrap.dart';
+import 'package:primeiro_app/media_query_vs_layout_builder.dart';
+import 'package:primeiro_app/page_with_media_query.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        home: AnimationPage(BounceAnimationExample()),
+        home: ExemploSingleChildScrollView(),
       );
   }
   
