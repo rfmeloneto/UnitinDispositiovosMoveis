@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/presenter/to_do_page.dart';
-
+import 'package:primeiro_app/presenter/post_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,8 +13,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        home: TodoListScreen(),
+    return MaterialApp(
+        home: PostPage(),
       );
   }
   
