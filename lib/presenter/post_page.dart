@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:primeiro_app/domain/post_entity.dart';
-import 'package:primeiro_app/presenter/post_notifyer.dart';
 import 'package:primeiro_app/presenter/store_post.dart';
 
 class PostPage extends StatefulWidget {
@@ -12,16 +11,10 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  late PostNotifyer notifyer;
-  @override
-  void initState() {
-    super.initState();
-    notifyer = widget.store.postNotifyer;
-  }
   @override
   void dispose() {
     super.dispose();
-    notifyer.dispose();
+    widget.store.postNotifyer.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -33,23 +26,23 @@ class _PostPageState extends State<PostPage> {
         children: [
           Expanded(
             child: ListenableBuilder(
-              listenable: notifyer,
+              listenable: widget.store.postNotifyer,
               builder: (context, child) {
-                if(notifyer.isLoading){
+                if(widget.store.postNotifyer.isLoading){
                     return Center(child: CircularProgressIndicator());
                   }
-                if(notifyer.posts.isEmpty){
-                  return Center(child: Text(notifyer.message));
+                if(widget.store.postNotifyer.posts.isEmpty){
+                  return Center(child: Text(widget.store.postNotifyer.message));
                 }
                 return ListView.builder(
-                itemCount: notifyer.posts.length,
+                itemCount: widget.store.postNotifyer.posts.length,
                 itemBuilder: (context, index) {
                   return Card(
                     elevation: 8.0,
                     color: Colors.grey.shade400,
                     child: ListTile(
-                      title: Text(notifyer.posts[index].title),
-                      subtitle: Text(notifyer.posts[index].body),
+                      title: Text(widget.store.postNotifyer.posts[index].title),
+                      subtitle: Text(widget.store.postNotifyer.posts[index].body),
                     ),
                   );
                 }
@@ -64,20 +57,20 @@ class _PostPageState extends State<PostPage> {
             child: Column(
               children: [
                 ElevatedButton(onPressed: () { 
-                  notifyer.getPosts(null);
+                  widget.store.postNotifyer.getPosts(null);
                   
                   },
                   child: Text("Carregar posts")),
                 ElevatedButton(onPressed: () { 
-                  notifyer.getPosts(1);
+                  widget.store.postNotifyer.getPosts(1);
                   },
                   child: Text("Carregar o primeiro post")),
                 ElevatedButton(onPressed: () { 
-                  notifyer.deletePost(1);
+                  widget.store.postNotifyer.deletePost(1);
                   },
                   child: Text("Deletar Post")),
                 ElevatedButton(onPressed: () { 
-                  notifyer.postPost(Post(id:1, title:"teste", body:"Teste", userId: 1));
+                  widget.store.postNotifyer.postPost(Post(id:1, title:"teste", body:"Teste", userId: 1));
                   },
                   child: Text("Postar Post")),
                   
