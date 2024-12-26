@@ -10,12 +10,15 @@ dependencies:
   dio: ^5.7.0
   flutter:
     sdk: flutter
+  
   provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  mockito: ^5.4.4
+  build_runner: ^2.3.3
 
 flutter:
   uses-material-design: true
